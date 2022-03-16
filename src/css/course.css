@@ -1,0 +1,95 @@
+label {
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+.submit {
+    margin: 10px 0;
+}
+
+.inner {
+    display: flex;
+}
+
+.middle {
+    position: absolute;
+    top: -77px;
+}
+
+.middle .courseAdd {
+    display: flex;
+}
+
+.middle .courseAdd button {
+    width: 65px;
+    height: 30px;
+    margin-top: 17px;
+    margin-right: 3px;
+
+    background-color: lightsalmon;
+    color: white;
+    border-color: lightyellow;
+}
+
+.middle .addCourse {
+    background-color: lightsalmon;
+    color: white;
+    border-color: white;
+}
+
+.input {
+    width: 80px;
+}
+
+.big .title {
+    font-size: 50px;
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+
+}
+
+.cors {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    height: 800px;
+}
+
+.cors .course {
+    padding: 10px 20px 20px;
+    border: 2px solid black;
+    width: 300px;
+    height: 800px;
+    border-radius: 5px;
+    margin-right: 20px;
+    margin-bottom: 30px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.courseTitle {
+    margin-left: -10px;
+    font-size: 25px;
+    text-align: center;
+}
+
+.courseGrade {
+    font-size: 18px;
+    margin-top: -15px;
+    margin-left: 5px;
+    text-align: center;
+
+}
+
+.course_underline {
+    width: 200px;
+    height: 6px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 5px;
+    background: linear-gradient(to right, #803b32, #ddb49b);
+}
+
+.cors {
+    overflow-y: scroll;
+}

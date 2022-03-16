@@ -1,0 +1,29 @@
+.subTask .subs {
+    display: flex;
+}
+
+.subTask .subtaskTitle {
+    font-size: 13px;
+    font-weight: 200;
+}
+
+.subTask .subs .slash {
+    font-size: 40px;
+    font-weight: 300;
+    margin-left: 10px;
+    margin-right: 10px;
+
+}
+
+.subTask .subs input {
+    height: 40px;
+    text-align: center;
+}
+
+.subTask .subs .submit {
+    background-color: lightsalmon;
+    color: white;
+    border-color: white;
+    margin-left : 10px;
+    margin-top: -2px;
+}

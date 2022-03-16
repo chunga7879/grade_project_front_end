@@ -1,0 +1,58 @@
+label {
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+.submit {
+    margin: 10px 0;
+}
+
+.inner {
+    display: flex;
+}
+
+.middleYear .addYear {
+    background-color: lightsalmon;
+    color: white;
+    border-color: white;
+}
+
+.middleYear button {
+    width: 90px;
+    background-color: lightsalmon;
+    color: white;
+    border-color: lightyellow;
+}
+
+.middleYear form {
+    padding-right: 25px;
+}
+
+.big .title {
+    font-size: 50px;
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+
+}
+
+.sems {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    height: 600px;
+
+}
+
+.semBlock {
+    color: white;
+    font-weight: 250;
+    padding: 10px 20px 20px;
+    border: 1px solid white;
+    width: 250px;
+    height: 200px;
+    background-color: #FF9900;
+    text-align: left;
+    border-radius: 5px;
+    margin-right: 20px;
+    margin-bottom: 30px;
+}
