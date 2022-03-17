@@ -22,7 +22,7 @@ export default function Tasks({
 
 
     useEffect(() => {
-        axios.get("http://localhost:3001/api/getTaskList/" + Pool.getCurrentUser().getUsername() + `/${semID}/${courseName}`)
+        axios.get("http://localhost:4000/api/getTaskList/" + Pool.getCurrentUser().getUsername() + `/${semID}/${courseName}`)
             .then((response) => {
                 let arr  = response.data;
                 setTaskList(arr);
@@ -32,7 +32,7 @@ export default function Tasks({
     const onSubmitTask = (event) => {
         event.preventDefault();
 
-        axios.post("http://localhost:3001/api/createTask", {courseName: courseName, semID: semID
+        axios.post("http://localhost:4000/api/createTask", {courseName: courseName, semID: semID
             , userName: userName, taskName: taskName, perToCourse: perToCourse, numSubTasks: numSubTasks}).then((res) => {
             console.log(res.data);
         });
@@ -43,7 +43,7 @@ export default function Tasks({
     const onSubmitDeleteTask = (event) => {
         event.preventDefault();
 
-        axios.delete("http://localhost:3001/api/deleteTask/" + Pool.getCurrentUser().getUsername() + "/" + semID + "/" + courseName + "/" + taskName).then((res) => {
+        axios.delete("http://localhost:4000/api/deleteTask/" + Pool.getCurrentUser().getUsername() + "/" + semID + "/" + courseName + "/" + taskName).then((res) => {
             console.log(res.data);
         });
 

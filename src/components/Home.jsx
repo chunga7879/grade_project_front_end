@@ -15,7 +15,7 @@ export default function Home(props) {
 
 
     useEffect(() => {
-            axios.get("http://localhost:3001/api/getYearList/" + Pool.getCurrentUser().getUsername())
+            axios.get("http://localhost:4000/api/getYearList/" + Pool.getCurrentUser().getUsername())
                 .then((response) => {
                     let arr  = response.data;
                     setSemList(arr);
@@ -25,7 +25,7 @@ export default function Home(props) {
     const onSubmitYear = (event) => {
         event.preventDefault();
 
-        axios.post("http://localhost:3001/api/createYear", {year: year, session: session, semester: semester
+        axios.post("http://localhost:4000/api/createYear", {year: year, session: session, semester: semester
             , userName: Pool.getCurrentUser().getUsername()}).then((res) => {
             console.log(res.data);
         });
@@ -37,7 +37,7 @@ export default function Home(props) {
     const onSubmitDeleteYear = (event) => {
         event.preventDefault();
 
-        axios.delete("http://localhost:3001/api/deleteYear/" + Pool.getCurrentUser().getUsername() + "/" + year + "/" + session + "/" + semester).then((res) => {
+        axios.delete("http://localhost:4000/api/deleteYear/" + Pool.getCurrentUser().getUsername() + "/" + year + "/" + session + "/" + semester).then((res) => {
             console.log(res.data);
         });
 

@@ -30,7 +30,7 @@ const Login = () => {
             console.log("onSuccess: ", data);
 
             console.log(Pool.getCurrentUser().getUsername());
-            axios.post('http://localhost:3001/createAccount', {userName: Pool.getCurrentUser().getUsername(), userEmail: authDetails.getUsername()}).then((res) => {
+            axios.post('http://localhost:4000/api/createAccount', {userName: Pool.getCurrentUser().getUsername(), userEmail: authDetails.getUsername()}).then((res) => {
                 console.log(res.data);
             });
 

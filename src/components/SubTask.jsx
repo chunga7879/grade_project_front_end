@@ -18,7 +18,7 @@ export default function SubTask ({
     const [subOutOf, setSubOutOf] = useState(100.0);
 
     useEffect(() => {
-        axios.get("http://localhost:3001/api/getSubTask/" + userName + `/${semID}/${courseName}/${taskName}/${subTask}`)
+        axios.get("http://localhost:4000/api/getSubTask/" + userName + `/${semID}/${courseName}/${taskName}/${subTask}`)
             .then((response) => {
                 let arr  = response.data;
                 let one  = arr[0];
@@ -30,10 +30,10 @@ export default function SubTask ({
     const onSubmitSubTask = (event) => {
         event.preventDefault();
 
-        axios.post("http://localhost:3001/api/createSubTask", {courseName: courseName, semID: semID
+        axios.post("http://localhost:4000/api/createSubTask", {courseName: courseName, semID: semID
             , userName: userName, taskName: taskName, subTask: subTask, subGrade: subGrade, subOutOf: subOutOf}).then((res) => {
             console.log(res.data);
-            axios.put("http://localhost:3001/api/changeGrade/" + userName + `/${semID}/${courseName}/${taskName}/${numSubTasks}`).then((res) => {
+            axios.put("http://localhost:4000/api/changeGrade/" + userName + `/${semID}/${courseName}/${taskName}/${numSubTasks}`).then((res) => {
                 console.log(res.data);
             })
         });

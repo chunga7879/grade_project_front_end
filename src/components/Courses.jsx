@@ -19,7 +19,7 @@ export default function Courses() {
     const [courseList, setCourseList] = useState([]);
 
     useEffect(() => {
-        axios.get("http://localhost:3001/api/getCourseList/" + Pool.getCurrentUser().getUsername() + `/${semID}`)
+        axios.get("http://localhost:4000/api/getCourseList/" + Pool.getCurrentUser().getUsername() + `/${semID}`)
             .then((response) => {
                 let arr  = response.data;
                 setCourseList(arr);
@@ -29,7 +29,7 @@ export default function Courses() {
     const onSubmitCourse = (event) => {
         event.preventDefault();
 
-        axios.post("http://localhost:3001/api/createCourse", {courseName: courseName, courseSection: courseSection, semID: semID
+        axios.post("http://localhost:4000/api/createCourse", {courseName: courseName, courseSection: courseSection, semID: semID
             , userName: userName}).then((res) => {
             console.log(res.data);
         });
@@ -41,7 +41,7 @@ export default function Courses() {
     const onSubmitCourseDelete = (event) => {
         event.preventDefault();
 
-        axios.delete("http://localhost:3001/api/deleteCourse/" + Pool.getCurrentUser().getUsername() + "/" + semID + "/" + courseName).then((res) => {
+        axios.delete("http://localhost:4000/api/deleteCourse/" + Pool.getCurrentUser().getUsername() + "/" + semID + "/" + courseName).then((res) => {
             console.log(res.data);
         });
 
