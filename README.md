@@ -13,7 +13,7 @@ It allows students to create semester and courses for each semester and tasks fo
 #### Amazon Cognito: signup and login
 #### Amazon RDS for database management
 #### React: front-end design
-#### Node js express : server for api connect & backend for calculation for grade=]
+#### Node js express : server for api connect & backend for calculation for grade
 
 ## github code
 ### front-end
