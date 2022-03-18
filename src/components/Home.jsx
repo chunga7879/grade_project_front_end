@@ -19,6 +19,7 @@ export default function Home(props) {
                 .then((response) => {
                     let arr  = response.data;
                     setSemList(arr);
+
                 })
     }, []);
 
@@ -28,6 +29,8 @@ export default function Home(props) {
         axios.post("http://localhost:4000/api/createYear", {year: year, session: session, semester: semester
             , userName: Pool.getCurrentUser().getUsername()}).then((res) => {
             console.log(res.data);
+            window.location.reload(false);
+
         });
 
         setShow((s) => !s);
@@ -39,7 +42,10 @@ export default function Home(props) {
 
         axios.delete("http://localhost:4000/api/deleteYear/" + Pool.getCurrentUser().getUsername() + "/" + year + "/" + session + "/" + semester).then((res) => {
             console.log(res.data);
+            window.location.reload(false);
+
         });
+
 
         setShow((s) => !s);
 

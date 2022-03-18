@@ -4,7 +4,7 @@ import Pool from "../UserPool";
 import { Row, Input } from 'antd';
 import '../css/sign.css';
 import {CognitoUser, AuthenticationDetails} from "amazon-cognito-identity-js";
-import {useHistory} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import axios from "axios";
 
 const Login = () => {
@@ -32,6 +32,8 @@ const Login = () => {
             console.log(Pool.getCurrentUser().getUsername());
             axios.post('http://localhost:4000/api/createAccount', {userName: Pool.getCurrentUser().getUsername(), userEmail: authDetails.getUsername()}).then((res) => {
                 console.log(res.data);
+                window.location.reload(false);
+
             });
 
 
@@ -95,7 +97,16 @@ const Login = () => {
                         </div>
                     </Row>
                 </Row>
+
+                <div className="or">
+                    OR
+                </div>
+
+                <button className="signup_box">
+                    <Link to="/signup" style={{ all: 'unset' }}>Sign Up</Link>
+                </button>
             </form>
+
         </div>
     );
 };

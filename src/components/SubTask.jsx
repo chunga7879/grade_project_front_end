@@ -35,8 +35,11 @@ export default function SubTask ({
             console.log(res.data);
             axios.put("http://localhost:4000/api/changeGrade/" + userName + `/${semID}/${courseName}/${taskName}/${numSubTasks}`).then((res) => {
                 console.log(res.data);
+                window.location.reload(false);
+
             })
         });
+
     }
 
     return (

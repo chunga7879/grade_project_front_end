@@ -35,12 +35,12 @@ const Signup = () => {
                 return;
             }
             console.log(data);
-            history.push('/welcome');
+            history.push('/login');
         });
     };
 
     return (
-        <div>
+        <div className="signup">
             <form onSubmit={onSubmit}>
                 <Row align="middle" className="signin_row">
                         <Row className="signin_contents">

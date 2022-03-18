@@ -14,6 +14,8 @@ export default function Head() {
         const user = Pool.getCurrentUser();
         if (user) {
             user.signOut();
+            setShow(false);
+
         }
     };
 

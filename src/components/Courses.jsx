@@ -23,6 +23,7 @@ export default function Courses() {
             .then((response) => {
                 let arr  = response.data;
                 setCourseList(arr);
+
             })
     }, []);
 
@@ -32,7 +33,10 @@ export default function Courses() {
         axios.post("http://localhost:4000/api/createCourse", {courseName: courseName, courseSection: courseSection, semID: semID
             , userName: userName}).then((res) => {
             console.log(res.data);
+            window.location.reload(false);
+
         });
+
 
         setShow((s) => !s);
 
@@ -43,6 +47,8 @@ export default function Courses() {
 
         axios.delete("http://localhost:4000/api/deleteCourse/" + Pool.getCurrentUser().getUsername() + "/" + semID + "/" + courseName).then((res) => {
             console.log(res.data);
+            window.location.reload(false);
+
         });
 
         setShow((s) => !s);

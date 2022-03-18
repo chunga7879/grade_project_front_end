@@ -35,6 +35,8 @@ export default function Tasks({
         axios.post("http://localhost:4000/api/createTask", {courseName: courseName, semID: semID
             , userName: userName, taskName: taskName, perToCourse: perToCourse, numSubTasks: numSubTasks}).then((res) => {
             console.log(res.data);
+            window.location.reload(false);
+
         });
 
         setShow((s) => !s);
@@ -45,6 +47,8 @@ export default function Tasks({
 
         axios.delete("http://localhost:4000/api/deleteTask/" + Pool.getCurrentUser().getUsername() + "/" + semID + "/" + courseName + "/" + taskName).then((res) => {
             console.log(res.data);
+            window.location.reload(false);
+
         });
 
         setShow((s) => !s);

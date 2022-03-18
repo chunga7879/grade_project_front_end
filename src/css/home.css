@@ -1,3 +1,7 @@
+.big {
+    min-height: 740px;
+}
+
 label {
     margin-right: 10px;
     margin-top: 5px;
