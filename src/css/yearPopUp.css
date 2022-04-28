@@ -15,7 +15,8 @@
 }
 .modal > section {
     width: 90%;
-    max-width: 450px;
+    max-width: 900px;
+    min-width: 600px;
     margin: 0 auto;
     border-radius: 0.3rem;
     background-color: #fff;
@@ -25,9 +26,14 @@
 }
 .modal > section > header {
     position: relative;
+    text-align: center;
+    top: 40px;
+    height: 60%;
     padding: 16px 64px 16px 16px;
-    background-color: #f1f1f1;
+    background-color: orange;
     font-weight: 700;
+    font-size: 30px;
+    color: white;
 }
 .modal > section > header button {
     position: absolute;
@@ -37,24 +43,50 @@
     font-size: 21px;
     font-weight: 700;
     text-align: center;
-    color: #999;
+    color: black;
     background-color: transparent;
 }
+
+
 .modal > section > main {
-    padding: 16px;
+    padding: 30px;
     border-bottom: 1px solid #dee2e6;
     border-top: 1px solid #dee2e6;
+    height: 100%;
 }
+
+.modal > section > main form {
+    padding: 50px;
+    display: flex;
+}
+
+.modal > section > main form label {
+    font-size: 30px;
+    font-weight: 400;
+    margin-right: 20%;
+    text-align: center;
+}
+
+.modal > section > main form select {
+    font-size: 20px;
+    margin-top: 20px;
+}
+
 .modal > section > footer {
     padding: 12px 16px;
-    text-align: right;
+    text-align: center;
+    height: 80px;
+
 }
 .modal > section > footer button {
     padding: 6px 12px;
-    color: #fff;
-    background-color: #6c757d;
+    color: white;
+    width: 40%;
+    height: 80%;
+    background-color: orange;
     border-radius: 5px;
-    font-size: 13px;
+    font-size: 30px;
+    font-weight: 500;
 }
 .modal.openModal {
     display: flex;

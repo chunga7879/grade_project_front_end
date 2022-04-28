@@ -1,22 +1,35 @@
-import React, {Component, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import Pool from "../UserPool";
-import {IoIosAddCircle} from "react-icons/io";
-import {Input} from "antd";
+
 import axios from "axios";
 import '../css/course.css';
-import Tasks from '../components/Tasks';
+import {AddCourse} from "./AddCourse";
+import {DeleteCourse} from "./DeleteCourse";
 
 
-export default function Courses() {
+export default function Courses(props) {
 
     let params = useParams();
     const semID = parseInt(params.semID);
-    const userName = Pool.getCurrentUser().getUsername();
-    const [show, setShow] = useState(false);
-    const [courseName, setCourse] = useState("");
-    const [courseSection, setSection] = useState(0);
     const [courseList, setCourseList] = useState([]);
+
+    const [addOpen, setAddOpen] = useState(false);
+    const [delOpen, setDeleteOpen] = useState(false);
+
+    const openAdd = () => {
+        setAddOpen(true);
+    };
+    const closeAdd = () => {
+        setAddOpen(false);
+    };
+
+    const openDelete = () => {
+        setDeleteOpen(true);
+    };
+    const closeDelete = () => {
+        setDeleteOpen(false);
+    };
 
     useEffect(() => {
         axios.get("http://localhost:4000/api/getCourseList/" + Pool.getCurrentUser().getUsername() + `/${semID}`)
@@ -27,78 +40,29 @@ export default function Courses() {
             })
     }, []);
 
-    const onSubmitCourse = (event) => {
-        event.preventDefault();
-
-        axios.post("http://localhost:4000/api/createCourse", {courseName: courseName, courseSection: courseSection, semID: semID
-            , userName: userName}).then((res) => {
-            console.log(res.data);
-            window.location.reload(false);
-
-        });
-
-
-        setShow((s) => !s);
-
-    }
-
-    const onSubmitCourseDelete = (event) => {
-        event.preventDefault();
-
-        axios.delete("http://localhost:4000/api/deleteCourse/" + Pool.getCurrentUser().getUsername() + "/" + semID + "/" + courseName).then((res) => {
-            console.log(res.data);
-            window.location.reload(false);
-
-        });
-
-        setShow((s) => !s);
-
-    }
-
     return (
         <div className="big">
             <h1 className="title">List of Courses</h1>
 
             <div className="inner">
-                <div className="middle">
-                    <button onClick={() => {
-                        setShow((s) => !s)
-                    }} className="addCourse">
-                        <IoIosAddCircle />
+                <div className="choices">
+                    <button onClick={
+                        openAdd
+                    } className="addYear">
+                        <span>ADD COURSE</span>
                     </button>
+                    <button onClick={
+                        openDelete
+                    } className="addYear">
+                        <span>ADD COURSE</span>
+                    </button>
+                </div>
 
-                    <form style={{ visibility: show ? "visible" : "hidden"}} onSubmit={onSubmitCourse} className="courseAdd">
-                        <label>
-                            CourseName: <br />
-                            <Input
-                                placeholder="Course Name"
-                                type="text"
-                                name="courseName"
-                                className="input"
-                                value={courseName}
-                                onChange={(event) => setCourse(event.target.value)}
-                            />
-                        </label> <br />
-                        <label>
-                            Section Number: <br />
-                            <Input
-                                placeholder="Course Section Number"
-                                name="courseSection"
-                                className="input"
-                                value={courseSection}
-                                type="number"
-                                onChange={(event) => setSection(event.target.value)}
-                            />
-                        </label> <br />
-
-                        <button onClick={onSubmitCourse}>
-                            ADD
-                        </button>
-                        <br />
-                        <button onClick={onSubmitCourseDelete}>
-                            DELETE
-                        </button>
-                    </form>
+                <div className="middleCourse">
+                    <AddCourse open={addOpen} close={closeAdd} header="ADD Course" semID={semID}/>
+                </div>
+                <div className="middleCourse">
+                    <DeleteCourse open={delOpen} close={closeDelete} header="DELETE Course" semID={semID}/>
                 </div>
 
                 <div className="cors">
@@ -106,22 +70,19 @@ export default function Courses() {
                         const {courseName, courseSection, totalCourseGrade, fail } = course;
 
                         return (
-                            <div className="course">
-                                <h1 className="courseTitle">
-                                    {courseName} &nbsp;
-                                    {courseSection}
-                                </h1>
-                                <h2 className="courseGrade">
-                                    Grade: {totalCourseGrade} &nbsp;
-                                </h2>
-                                <div className="course_underline" />
+                            <button className="course" onClick={(event) => {
+                                event.preventDefault();
+                                props.history.push(`/tasks/${semID}/${courseName}`);
+                            }}>
+                                    <h1 className="courseTitle">
+                                        {courseName} &nbsp;
+                                        {courseSection}
+                                    </h1>
+                                    <h2 className="courseGrade">
+                                        Grade: {totalCourseGrade} &nbsp;
+                                    </h2>
 
-                                <Tasks
-                                    semID={semID}
-                                    courseName={courseName}
-                                />
-
-                            </div>
+                            </button>
 
                         );
                     })}

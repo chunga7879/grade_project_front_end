@@ -5,14 +5,11 @@ import Pool from "../UserPool";
 import axios from "axios";
 import '../css/task.css';
 import SubTask from "./SubTask";
+import {useParams} from "react-router-dom";
 
+export default function Tasks() {
 
-
-export default function Tasks({
-        semID,
-        courseName
-                              }) {
-
+    const {semID, courseName} = useParams();
     const userName = Pool.getCurrentUser().getUsername();
     const [show, setShow] = useState(false);
     const [taskName, setTask] = useState("");

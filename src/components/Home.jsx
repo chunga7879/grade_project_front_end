@@ -1,9 +1,9 @@
 import Pool from "../UserPool";
-import { IoIosAddCircle } from "react-icons/io";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import '../css/home.css';
 import {AddYear} from "./AddYear";
+import {DeleteYear} from "./DeleteYear";
 
 export default function Home(props) {
     const [addOpen, setAddOpen] = useState(false);
@@ -55,7 +55,7 @@ export default function Home(props) {
                     <AddYear open={addOpen} close={closeAdd} header="ADD YEAR" />
                 </div>
                 <div className="middleYear">
-                    <AddYear open={delOpen} close={closeDelete()} header="DELETE YEAR" />
+                    <DeleteYear open={delOpen} close={closeDelete} header="DELETE YEAR" />
                 </div>
 
                 <div className="sems">

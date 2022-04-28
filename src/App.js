@@ -32,6 +32,8 @@ function App() {
                   <Route exact path="/courses" component={Courses} />
                   <Route exact path="/courses/:semID" component={Courses} />
                   <Route exact path="/tasks" component={Tasks} />
+                  <Route exact path="/tasks/:semID/:courseName" component={Tasks} />
+
               </Switch>
           </div>
 

@@ -5,7 +5,6 @@ body {
   font-weight: 400;
   line-height: 1.4;
   background-color: #f4f4f4;
-
   color: #333;
 }
 
@@ -17,7 +16,7 @@ body {
 
 header {
   margin-top: -50px;
-  padding: 1vw;
+  padding: 1.5vw;
   display: block;
   height: 100px;
   background-color: white;
@@ -36,7 +35,7 @@ header {
 .header__container .logo_container {
   position: absolute;
   left: 11%;
-  top: 0;
+  top: 1%;
 }
 
 .header__container .logo_container .logo {

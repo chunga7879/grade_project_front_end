@@ -3,7 +3,7 @@ import Pool from "../UserPool";
 import {useState} from "react";
 import '../css/yearPopUp.css';
 
-const DeleteYear = (props) => {
+export const DeleteYear = (props) => {
     const { open, close, header} = props;
 
     const [year, setYear] = useState("2021");
@@ -57,17 +57,12 @@ const DeleteYear = (props) => {
                                         <option value="2">Semester 2</option>
                                     </select>
                                 </label> <br />
-                                <button onClick={onSubmitYear}>
-                                    ADD
-                                </button>
-                                <button onClick={onSubmitDeleteYear}>
-                                    DELETE
-                                </button>
-
                             </form>
                         </main>
                         <footer>
-
+                            <button onClick={onSubmitDeleteYear}>
+                                DELETE
+                            </button>
                         </footer>
                     </section>
                 ) : null
