@@ -3,16 +3,27 @@ import { IoIosAddCircle } from "react-icons/io";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import '../css/home.css';
-
-
+import {AddYear} from "./AddYear";
 
 export default function Home(props) {
-    const [show, setShow] = useState(false);
-    const [year, setYear] = useState("2021");
-    const [session, setSession] = useState("0");
-    const [semester, setSemester] = useState("1");
+    const [addOpen, setAddOpen] = useState(false);
+    const [delOpen, setDeleteOpen] = useState(false);
+
     const [semList, setSemList] = useState([]);
 
+    const openAdd = () => {
+        setAddOpen(true);
+    };
+    const closeAdd = () => {
+        setAddOpen(false);
+    };
+
+    const openDelete = () => {
+        setDeleteOpen(true);
+    };
+    const closeDelete = () => {
+        setDeleteOpen(false);
+    };
 
     useEffect(() => {
             axios.get("http://localhost:4000/api/getYearList/" + Pool.getCurrentUser().getUsername())
@@ -23,78 +34,28 @@ export default function Home(props) {
                 })
     }, []);
 
-    const onSubmitYear = (event) => {
-        event.preventDefault();
-
-        axios.post("http://localhost:4000/api/createYear", {year: year, session: session, semester: semester
-            , userName: Pool.getCurrentUser().getUsername()}).then((res) => {
-            console.log(res.data);
-            window.location.reload(false);
-
-        });
-
-        setShow((s) => !s);
-
-    }
-
-    const onSubmitDeleteYear = (event) => {
-        event.preventDefault();
-
-        axios.delete("http://localhost:4000/api/deleteYear/" + Pool.getCurrentUser().getUsername() + "/" + year + "/" + session + "/" + semester).then((res) => {
-            console.log(res.data);
-            window.location.reload(false);
-
-        });
-
-
-        setShow((s) => !s);
-
-    }
 
     return (
         <div className="big">
-            <h1 className="title">List of Year</h1>
+            <div className="choices">
+                <button onClick={
+                    openAdd
+                } className="addYear">
+                    <span>ADD YEAR</span>
+                </button>
+                <button onClick={
+                    openDelete
+                } className="addYear">
+                    <span>DELETE YEAR</span>
+                </button>
+            </div>
 
             <div className="inner">
                 <div className="middleYear">
-                    <button onClick={() => {
-                        setShow((s) => !s)
-                    }} className="addYear">
-                        <IoIosAddCircle />
-                    </button>
-
-                    <form style={{ visibility: show ? "visible" : "hidden"}}>
-                        <label>
-                            Year: <br />
-                            <select value={year} onChange={(event) => setYear(event.target.value)}>
-                                <option value="2021">2021</option>
-                                <option value="2022">2022</option>
-                                <option value="2023">2023</option>
-                                <option value="2024">2024</option>
-                            </select>
-                        </label> <br />
-                        <label>
-                            Session: <br />
-                            <select value={session} onChange={(event) => setSession(event.target.value)}>
-                                <option value="0">Winter</option>
-                                <option value="1">Summer</option>
-                            </select>
-                        </label> <br />
-                        <label>
-                            Semester:<br />
-                            <select value={semester} onChange={(event) => setSemester(event.target.value)}>
-                                <option value="1">Semester 1</option>
-                                <option value="2">Semester 2</option>
-                            </select>
-                        </label> <br />
-                        <button onClick={onSubmitYear}>
-                            ADD
-                        </button>
-                        <button onClick={onSubmitDeleteYear}>
-                            DELETE
-                        </button>
-
-                    </form>
+                    <AddYear open={addOpen} close={closeAdd} header="ADD YEAR" />
+                </div>
+                <div className="middleYear">
+                    <AddYear open={delOpen} close={closeDelete()} header="DELETE YEAR" />
                 </div>
 
                 <div className="sems">

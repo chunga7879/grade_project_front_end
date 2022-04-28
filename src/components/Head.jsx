@@ -30,15 +30,12 @@ export default function Head() {
         return (
             <header>
                 <div className="header__container">
-                    <div className="logo_container">
-                        <Link to="/home">
-                            <img src={logo} alt="Chunga's Logo" className="logo"/>
-                        </Link>
-                    </div>
+                        <div className="logo_container">
+                            <Link to="/home">
+                                <img src={logo} alt="Chunga's Logo" className="logo"/>
+                            </Link>
+                        </div>
                     <div className="title">Grade Management</div>
-                    <div className="subtitle">
-                        Manage Your Course & Grade Effectively to get A+
-                    </div>
                     <div>
                         <button onClick={() => {
                             setShow((s) => !s);

@@ -1,5 +1,5 @@
 .big {
-    min-height: 740px;
+    min-height: 850px;
 }
 
 label {
@@ -14,20 +14,6 @@ label {
 .inner {
     display: flex;
 }
-
-.middleYear .addYear {
-    background-color: lightsalmon;
-    color: white;
-    border-color: white;
-}
-
-.middleYear button {
-    width: 90px;
-    background-color: lightsalmon;
-    color: white;
-    border-color: lightyellow;
-}
-
 .middleYear form {
     padding-right: 25px;
 }
@@ -40,7 +26,8 @@ label {
 }
 
 .sems {
-    position: relative;
+    position: absolute;
+    left: 0;
     display: flex;
     flex-wrap: wrap;
     height: 600px;
@@ -54,9 +41,31 @@ label {
     border: 1px solid white;
     width: 250px;
     height: 200px;
-    background-color: #FF9900;
+    background-color: #2c3e4c;
     text-align: left;
     border-radius: 5px;
     margin-right: 20px;
     margin-bottom: 30px;
+}
+
+.big .choices {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    position: relative;
+    left: 30%;
+}
+
+.big .choices button {
+    text-align: center;
+    color: white;
+    padding: 10px 20px 20px;
+    border-radius: 5px;
+    border: 1px solid white;
+    width: 250px;
+    height: 50px;
+    background-color: orange;
+    font-size: 30px;
+    margin-right: 20%;
+
+
 }
