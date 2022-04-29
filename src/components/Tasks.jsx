@@ -1,141 +1,130 @@
-import {IoIosAddCircle} from "react-icons/io";
-import {Input} from "antd";
 import React, {useEffect, useState} from "react";
 import Pool from "../UserPool";
 import axios from "axios";
 import '../css/task.css';
 import SubTask from "./SubTask";
 import {useParams} from "react-router-dom";
+import {AddTask} from "./AddTask";
+import {DeleteTask} from "./DeleteTask";
+import Footer from "./Footer";
 
 export default function Tasks() {
 
     const {semID, courseName} = useParams();
-    const userName = Pool.getCurrentUser().getUsername();
-    const [show, setShow] = useState(false);
-    const [taskName, setTask] = useState("");
-    const [perToCourse, setPercentage] = useState("0.0");
-    const [numSubTasks, setNumSubTasks] = useState("1");
+    const [courseGrade, setCourseGrade] = useState();
+
     const [taskList, setTaskList] = useState([]);
 
+    const [addOpen, setAddOpen] = useState(false);
+    const [delOpen, setDeleteOpen] = useState(false);
+
+    const openAdd = () => {
+        setAddOpen(true);
+    };
+    const closeAdd = () => {
+        setAddOpen(false);
+    };
+
+    const openDelete = () => {
+        setDeleteOpen(true);
+    };
+    const closeDelete = () => {
+        setDeleteOpen(false);
+    };
 
     useEffect(() => {
         axios.get("http://localhost:4000/api/getTaskList/" + Pool.getCurrentUser().getUsername() + `/${semID}/${courseName}`)
             .then((response) => {
                 let arr  = response.data;
                 setTaskList(arr);
-            })
+            });
+
+        axios.get("http://localhost:4000/api/getCourseGrade/" + Pool.getCurrentUser().getUsername() + `/${semID}/${courseName}`).then((response) => {
+            let arr2  = response.data;
+            let grade = arr2[0].totalCourseGrade;
+            setCourseGrade(grade);
+        })
     }, []);
 
-    const onSubmitTask = (event) => {
-        event.preventDefault();
-
-        axios.post("http://localhost:4000/api/createTask", {courseName: courseName, semID: semID
-            , userName: userName, taskName: taskName, perToCourse: perToCourse, numSubTasks: numSubTasks}).then((res) => {
-            console.log(res.data);
-            window.location.reload(false);
-
-        });
-
-        setShow((s) => !s);
-    }
-
-    const onSubmitDeleteTask = (event) => {
-        event.preventDefault();
-
-        axios.delete("http://localhost:4000/api/deleteTask/" + Pool.getCurrentUser().getUsername() + "/" + semID + "/" + courseName + "/" + taskName).then((res) => {
-            console.log(res.data);
-            window.location.reload(false);
-
-        });
-
-        setShow((s) => !s);
-
-    }
-
     return (
-        <div className="inner">
-            <div className="middleTask">
-                <button onClick={() => {
-                    setShow((s) => !s);
-                }} id="taskAdd">
-                    <IoIosAddCircle />
+        <div className="taskList inner">
+            <div className="choices">
+                <button onClick={
+                    openAdd
+                } className="add">
+                    <span>ADD TASK</span>
                 </button>
+                <button onClick={
+                    openDelete
+                } className="delete">
+                    <span>DELETE TASK</span>
+                </button>
+            </div>
 
-                <form style={{ visibility: show ? "visible" : "hidden"}} onSubmit={onSubmitTask} id="taskForm">
-                    <label>
-                        Task Name: <br />
-                        <Input
-                            placeholder="Midterm"
-                            type="text"
-                            name="taskName"
-                            className="input"
-                            value={taskName}
-                            onChange={(event) => setTask(event.target.value)}
-                        />
-                    </label> <br />
-                    <label>
-                        Percentage To Course : <br />
-                        <Input
-                            placeholder="20.0"
-                            name="perToCourse"
-                            className="input"
-                            value={perToCourse}
-                            onChange={(event) => setPercentage(event.target.value)}
-                        />
-                    </label> <br />
-                    <label>
-                        Number of Sub-tasks : <br />
-                        <Input
-                            placeholder="1"
-                            name="numSubTasks"
-                            className="input"
-                            value={numSubTasks}
-                            onChange={(event) => setNumSubTasks(event.target.value)}
-                        />
-                    </label> <br />
-                    <button onClick={onSubmitTask}>
-                        ADD
-                    </button>
-                    <br />
-                    <button onClick={onSubmitDeleteTask}>
-                        DELETE
-                    </button>
-                </form>
+            <div className="middleTask">
+                <AddTask open={addOpen} close={closeAdd} header="TASK" semID={semID} courseName={courseName}/>
+            </div>
+            <div className="middleTask">
+                <DeleteTask open={delOpen} close={closeDelete} header="TASK" semID={semID} courseName={courseName}/>
+            </div>
+            <div className="grade">
+                <h2>Total Grade: { Number.parseFloat(courseGrade).toFixed(2) }</h2>
             </div>
 
             <div className="tasks">
-                {taskList.map((task) => {
+                {taskList.map((task, j) => {
                     const {taskName, numSubTasks, totalTaskGrade, perToCourse} = task;
 
                     return (
-                        <div className="task">
-                            <div className="taskTitles">
+                        <div className="task" key={j}>
+                            <div className="titles">
                                 <p className="taskTitle">
-                                    &#183;&nbsp;{taskName} &nbsp;
+                                    {taskName}
                                 </p>
-                                <span className="taskDetail">
-                                    %: {perToCourse} &nbsp;
-                                    Grade:{totalTaskGrade}
-                                </span>
+                                <p className="taskDetail">
+                                % {perToCourse} &nbsp;
+                                    Grade:{Number.parseFloat(totalTaskGrade).toFixed(2)}
+                                </p>
                             </div>
-                            {[...Array(numSubTasks)].map((e, i) => {
-                                return (
-                                    <SubTask
-                                        semID={semID}
-                                        courseName={courseName}
-                                        taskName={taskName}
-                                        subTask={i + 1}
-                                        numSubTasks={numSubTasks}
-                                    />
-                                );
+                            <div className="subTasks">
+                                {[...Array(numSubTasks)].map((e, i) => {
+                                    return (
+                                        <div className="subParts" key={i}>
+                                            <SubTask
+                                                semID={semID}
+                                                courseName={courseName}
+                                                taskName={taskName}
+                                                subTask={i + 1}
+                                                numSubTasks={numSubTasks}
+                                            />
+                                        </div>
 
-                            })}
+                                    );
+                                })}
+                            </div>
+                            <div>
+                                <ColoredLine color="grey" />
+                            </div>
 
                         </div>
 
                     );
                 })}
             </div>
+
         </div>
     );
 }
+
+const ColoredLine = ({ color }) => (
+    <hr
+        style={{
+            color,
+            backgroundColor: color,
+            position: 'absolute',
+            left: '5%',
+            height: '1px',
+            width: '100%'
+        }}
+    />
+);

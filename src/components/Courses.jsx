@@ -6,6 +6,7 @@ import axios from "axios";
 import '../css/course.css';
 import {AddCourse} from "./AddCourse";
 import {DeleteCourse} from "./DeleteCourse";
+import Footer from "./Footer";
 
 
 export default function Courses(props) {
@@ -42,27 +43,25 @@ export default function Courses(props) {
 
     return (
         <div className="big">
-            <h1 className="title">List of Courses</h1>
-
             <div className="inner">
                 <div className="choices">
                     <button onClick={
                         openAdd
-                    } className="addYear">
+                    } className="add">
                         <span>ADD COURSE</span>
                     </button>
                     <button onClick={
                         openDelete
-                    } className="addYear">
-                        <span>ADD COURSE</span>
+                    } className="delete">
+                        <span>DELETE COURSE</span>
                     </button>
                 </div>
 
                 <div className="middleCourse">
-                    <AddCourse open={addOpen} close={closeAdd} header="ADD Course" semID={semID}/>
+                    <AddCourse open={addOpen} close={closeAdd} header="C O U R S E" semID={semID}/>
                 </div>
                 <div className="middleCourse">
-                    <DeleteCourse open={delOpen} close={closeDelete} header="DELETE Course" semID={semID}/>
+                    <DeleteCourse open={delOpen} close={closeDelete} header="C O U R S E" semID={semID}/>
                 </div>
 
                 <div className="cors">
@@ -79,7 +78,7 @@ export default function Courses(props) {
                                         {courseSection}
                                     </h1>
                                     <h2 className="courseGrade">
-                                        Grade: {totalCourseGrade} &nbsp;
+                                        Grade: {Number.parseFloat(totalCourseGrade).toFixed(2)} &nbsp;
                                     </h2>
 
                             </button>
@@ -88,6 +87,9 @@ export default function Courses(props) {
                     })}
                 </div>
             </div>
+
+            <Footer />
+
 
         </div>
     );

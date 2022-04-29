@@ -15,7 +15,7 @@ export default function Head() {
         if (user) {
             user.signOut();
             setShow(false);
-
+            window.location.reload(false);
         }
     };
 
@@ -53,10 +53,13 @@ export default function Head() {
         return (
             <header>
                 <div className="header__container">
-                    <div className="title">University of British Columbia</div>
-                    <div className="subtitle">
-                        Manage Courses and Grades Effectively!!!
+                    <div className="logo_container">
+                        <Link to="/home">
+                            <img src={logo} alt="Chunga's Logo" className="logo"/>
+                        </Link>
                     </div>
+                    <div className="title">Grade Management</div>
+
                     <div>
                         <button className="user_box">
                             <Link to="/login" style={{ all: 'unset' }}>Login</Link>
@@ -66,5 +69,9 @@ export default function Head() {
             </header>
         );
     }
+
+}
+
+const header = () => {
 
 }

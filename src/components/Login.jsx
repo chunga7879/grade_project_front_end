@@ -6,6 +6,7 @@ import '../css/sign.css';
 import {CognitoUser, AuthenticationDetails} from "amazon-cognito-identity-js";
 import {Link, useHistory} from "react-router-dom";
 import axios from "axios";
+import Footer from "./Footer";
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -50,64 +51,74 @@ const Login = () => {
     };
 
     return (
-        <div className="signin">
-            <form onSubmit={onSubmit} className="signin_form">
-                <Row align="middle" className="signin_row">
-                    <Row className="signin_contents">
-                        <div className="signin_title">Login</div>
-                        <div className="signin_underline" />
-                        <div className="email_title">
-                            Email
-                            <span className="required"> *</span>
+        <div className="login">
+            <div className="signin">
+                <form onSubmit={onSubmit} className="signin_form">
+                    <div align="middle" className="signin_row">
+                        <div className="signin_contents">
+                            <div className="signin_title">Login</div>
+                            <div className="email_title">
+                                Email
+                                <span className="required"> *</span>
+                            </div>
+                            <div className="input_area">
+                                <Input
+                                    placeholder="Email"
+                                    autoComplete="email"
+                                    name="email"
+                                    className="input"
+                                    value={email}
+                                    onChange={(event) => setEmail(event.target.value)}
+                                />
+                            </div>
+                            <div className="title">
+                                Password
+                                <span className="required"> *</span>
+                            </div>
+                            <div className="input_area">
+                                <Input
+                                    type="password"
+                                    autoComplete="current-password"
+                                    className="input"
+                                    value={password}
+                                    onChange={(event) => setPassword(event.target.value)}
+                                />
+                                <p className="passwordRequirements">
+                                    - minimum 8 length <br />
+                                    - lowercase letters + numbers
+                                </p>
+                            </div>
+                            <div className="button_area">
+                                <button
+                                    type="submit"
+                                    className="button"
+                                >
+                                    Login
+                                </button>
+                            </div>
                         </div>
-                        <div className="input_area">
-                            <Input
-                                placeholder="Email"
-                                autoComplete="email"
-                                name="email"
-                                className="input"
-                                value={email}
-                                onChange={(event) => setEmail(event.target.value)}
-                            />
-                        </div>
-                        <div className="title">
-                            Password
-                            <span className="required"> *</span>
-                        </div>
-                        <div className="input_area">
-                            <Input
-                                type="password"
-                                autoComplete="current-password"
-                                className="input"
-                                value={password}
-                                onChange={(event) => setPassword(event.target.value)}
-                            />
-                            <p className="passwordRequirements">
-                                - minimum 8 length <br />
-                                - lowercase letters + numbers
-                            </p>
-                        </div>
-                        <div className="button_area">
-                            <button
-                                type="submit"
-                                className="button"
-                            >
-                                Login
-                            </button>
-                        </div>
-                    </Row>
-                </Row>
+                    </div>
+
+                </form>
 
                 <div className="or">
                     OR
                 </div>
 
-                <button className="signup_box">
-                    <Link to="/signup" style={{ all: 'unset' }}>Sign Up</Link>
-                </button>
-            </form>
+                <div>
+                    <Link to="/signup" style={{ all: 'unset' }}>
+                        <button className="signup_box">
+                            Sign Up
+                        </button>
+                    </Link>
+                </div>
+
+            </div>
 
         </div>
+
+
+
     );
 };
 

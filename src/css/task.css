@@ -1,74 +1,63 @@
-.tasks {
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-.inner .middleTask {
-    position: absolute;
-    z-index: 1000;
-
-}
-
-.inner .middleTask #taskAdd {
-    background-color: lightyellow;
-    color: black;
-    border-color: white;
-}
-
-
-.inner #taskForm {
-    position: absolute;
-    height: 380px;
-    width: 300px;
-    background-color: lightyellow;
-    display: flex;
-    flex-direction: column;
-    font-size: 20px;
-    text-align: center;
-    font-weight: bold;
-    justify-content: center;
-
-}
-
-.inner #taskForm button {
-    width: 230px;
+.taskList {
+    min-height: 1000px;
     position: relative;
-    left: 10%;
-    background-color: white;
-    font-weight: 300;
+    padding-bottom: 10%;
 }
 
-.inner #taskForm input {
-    margin-top: 10px;
-    font-size: 20px;
-    width: 200px;
-    text-align: center;
+.taskList .grade {
+    position: relative;
+    left: -10%;
+    text-align: left;
+
 }
 
-.inner .tasks {
+.taskList .grade h2 {
+    font-size: 30px;
+}
+
+.taskList .choices {
     position: absolute;
-    z-index: 1;
-    overflow-y: scroll;
-    padding-bottom: 10px;
-
-}
-
-.tasks .task .taskTitles {
+    top: 5%;
+    left: 20%;
     display: flex;
-    margin-bottom: -20px;
 }
 
-.tasks .task .taskTitles .taskTitle {
-    font-size: 20px;
+.taskList .tasks {
+    position: absolute;
+    top: 12%;
+    left: -10%;
+    min-height: 600px;
+
+}
+
+.taskList .tasks .task {
+    position: relative;
+    display: flex;
+}
+
+.taskList .tasks .task .titles {
+    width: 100%;
+    padding-right: 100px;
+}
+
+
+.taskList .tasks .task .titles .taskTitle {
+    font-size: 40px;
     font-weight: bold;
 }
 
-.tasks .task .taskTitles .taskDetail {
-    font-size: 14px;
-    margin-top: 25px;
+.taskList .tasks .task .titles .taskDetail {
+    font-size: 30px;
+    font-weight: bold;
+    display: flex;
 }
 
-.tasks .task .subTask {
+.tasks .task .subTasks {
+    position: relative;
+    padding-bottom: 5%;
+    right: -10%;
+    top: 50px;
     font-size: 12px;
+    width: 100%;
 }
+

@@ -4,6 +4,7 @@ import axios from "axios";
 import '../css/home.css';
 import {AddYear} from "./AddYear";
 import {DeleteYear} from "./DeleteYear";
+import Footer from "./Footer";
 
 export default function Home(props) {
     const [addOpen, setAddOpen] = useState(false);
@@ -34,61 +35,73 @@ export default function Home(props) {
                 })
     }, []);
 
+    const user = Pool.getCurrentUser();
 
-    return (
-        <div className="big">
-            <div className="choices">
-                <button onClick={
-                    openAdd
-                } className="addYear">
-                    <span>ADD YEAR</span>
-                </button>
-                <button onClick={
-                    openDelete
-                } className="addYear">
-                    <span>DELETE YEAR</span>
-                </button>
+    if (user) {
+
+        return (
+            <div className="big">
+                <div className="choices">
+                    <button onClick={
+                        openAdd
+                    } className="add">
+                        <span>ADD YEAR</span>
+                    </button>
+                    <button onClick={
+                        openDelete
+                    } className="delete">
+                        <span>DELETE YEAR</span>
+                    </button>
+                </div>
+                <div className="inner">
+                    <div className="middleYear">
+                        <AddYear open={addOpen} close={closeAdd} header="Y E A R" />
+                    </div>
+                    <div className="middleYear">
+                        <DeleteYear open={delOpen} close={closeDelete} header="Y E A R" />
+                    </div>
+
+                    <div className="sems">
+                        {semList.map((sem) => {
+                            const {semID, totalSemGrade, userName} = sem;
+                            let year = semID.toString().substr(0, 4);
+                            let session = semID.toString().substr(4, 1);
+                            let sessionString = "";
+                            let semester = semID.toString().substr(5, 1);
+                            if (session === "0") {
+                                sessionString = "WINTER"
+                            } else if (session === "1") {
+                                sessionString = "SUMMER"
+                            }
+
+                            return (
+                                <button className="semBlock" onClick={(event) => {
+                                    event.preventDefault();
+                                    props.history.push(`/courses/${semID}`)
+
+                                }}>
+                                    <h1>
+                                        {year} <br />
+                                        {sessionString} <br />
+                                        Semester {semester}<br />
+                                        Grade: {totalSemGrade}<br />
+                                    </h1>
+
+                                </button>
+                            );
+                        })}
+                    </div>
+                </div>
+
+                <Footer />
+
             </div>
+        );
+    } else {
+        window.location.reload(false);
 
-            <div className="inner">
-                <div className="middleYear">
-                    <AddYear open={addOpen} close={closeAdd} header="ADD YEAR" />
-                </div>
-                <div className="middleYear">
-                    <DeleteYear open={delOpen} close={closeDelete} header="DELETE YEAR" />
-                </div>
-
-                <div className="sems">
-                    {semList.map((sem) => {
-                        const {semID, totalSemGrade, userName} = sem;
-                        let year = semID.toString().substr(0, 4);
-                        let session = semID.toString().substr(4, 1);
-                        let sessionString = "";
-                        let semester = semID.toString().substr(5, 1);
-                        if (session === "0") {
-                            sessionString = "WINTER"
-                        } else if (session === "1") {
-                            sessionString = "SUMMER"
-                        }
-
-                        return (
-                            <button className="semBlock" onClick={(event) => {
-                                event.preventDefault();
-                                props.history.push(`/courses/${semID}`)
-
-                            }}>
-                                <h1>
-                                    {year} <br />
-                                    {sessionString} <br />
-                                    Semester {semester}<br />
-                                    Grade: {totalSemGrade}<br />
-                                </h1>
-
-                            </button>
-                        );
-                    })}
-                </div>
-            </div>
-        </div>
-    );
+        return (
+            props.history.push('/login')
+        );
+    }
 }

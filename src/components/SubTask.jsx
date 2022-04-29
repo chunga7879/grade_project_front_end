@@ -43,9 +43,11 @@ export default function SubTask ({
     }
 
     return (
-        <form onSubmit={onSubmitSubTask}>
+        <form onSubmit={onSubmitSubTask} className="subtaskForm">
             <div className="subTask">
-                <div className="subtaskTitle">{taskName} {subTask} : </div>
+                <div className="subtaskTitle">
+                    {subTask} &nbsp;&nbsp;&nbsp;
+                </div>
                 <div className="subs">
                     <Input
                         placeholder=""
@@ -66,6 +68,7 @@ export default function SubTask ({
                         type="number"
                         onChange={(event) => setSubOutOf(event.target.value)}
                     />
+
                     <input type="submit" value="Submit" className="submit" />
                 </div>
 

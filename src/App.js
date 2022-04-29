@@ -20,24 +20,23 @@ function noAccount() {
 function App() {
 
   return (
-      <BrowserRouter>
-          <Head />
 
-          <div className="contents">
-              <Switch>
-                  <Route exact path="/" component={Start} />
-                  <Route exact path="/signup" component={Signup} />
-                  <Route exact path="/login" component={Login} />
-                  <Route exact path="/home" component={Home} />
-                  <Route exact path="/courses" component={Courses} />
-                  <Route exact path="/courses/:semID" component={Courses} />
-                  <Route exact path="/tasks" component={Tasks} />
-                  <Route exact path="/tasks/:semID/:courseName" component={Tasks} />
+    <BrowserRouter>
+            <Head />
 
-              </Switch>
-          </div>
+            <div className="contents">
+                <Switch>
+                    <Route exact path="/" component={Start} />
+                    <Route exact path="/signup" component={Signup} />
+                    <Route exact path="/login" component={Login} />
+                    <Route exact path="/home" component={Home} />
+                    <Route exact path="/courses" component={Courses} />
+                    <Route exact path="/courses/:semID" component={Courses} />
+                    <Route exact path="/tasks" component={Tasks} />
+                    <Route exact path="/tasks/:semID/:courseName" component={Tasks} />
 
-          <Footer />
+                </Switch>
+            </div>
 
       </BrowserRouter>
 

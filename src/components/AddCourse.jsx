@@ -59,7 +59,7 @@ export const AddCourse = (props) => {
 
                             </form>
                         </main>
-                        <footer>
+                        <footer className="fotFor">
                             <button onClick={onSubmitCourse}>
                                 ADD
                             </button>

@@ -41,7 +41,7 @@ const Signup = () => {
 
     return (
         <div className="signup">
-            <form onSubmit={onSubmit}>
+            <form>
                 <Row align="middle" className="signin_row">
                         <Row className="signin_contents">
                             <div className="signin_title">CREATE ACCOUNT</div>
@@ -127,9 +127,9 @@ const Signup = () => {
                             </div>
                             <div className="button_area">
                                 <button
-                                    type="submit"
                                     size="large"
                                     className="button"
+                                    onClick={onSubmit}
                                 >
                                     Sign Up
                                 </button>

@@ -1,18 +1,23 @@
-import {Link, useHistory} from "react-router-dom";
 import Pool from "../UserPool";
+import {Link} from "react-router-dom";
 
-export default function Start() {
-    let history = useHistory();
+export default function Start(props) {
 
     const user = Pool.getCurrentUser();
+    console.log(user);
 
     if (user) {
+        window.location.reload(false);
+
         return (
-            history.push('/home')
-        );
+            props.history.push('/home')
+            );
     } else {
+        window.location.reload(false);
+
         return (
-            history.push('/login')
-        );
+            props.history.push('/login')
+    );
+
     }
 }

@@ -1,5 +1,5 @@
 .big {
-    min-height: 850px;
+    min-height: 1000px;
 }
 
 label {
@@ -21,8 +21,7 @@ label {
 .big .title {
     font-size: 50px;
     text-align: center;
-    font-family: 'Lato', sans-serif;
-
+    font-family: 'Ubuntu', sans-serif;;
 }
 
 .sems {
@@ -52,20 +51,21 @@ label {
     margin-top: 50px;
     margin-bottom: 50px;
     position: relative;
-    left: 30%;
+    left: 25%;
 }
 
-.big .choices button {
+.choices button {
     text-align: center;
     color: white;
-    padding: 10px 20px 20px;
+    padding: 10px 30px 30px;
     border-radius: 5px;
     border: 1px solid white;
-    width: 250px;
+    max-width: 300px;
+    min-width: 300px;
     height: 50px;
     background-color: orange;
-    font-size: 30px;
+    font-size: 25px;
     margin-right: 20%;
-
+    font-family: 'Ubuntu', sans-serif;
 
 }
