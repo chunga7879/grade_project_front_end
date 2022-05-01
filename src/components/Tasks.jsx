@@ -37,13 +37,14 @@ export default function Tasks() {
             .then((response) => {
                 let arr  = response.data;
                 setTaskList(arr);
+
+                axios.get("http://localhost:4000/api/getCourseGrade/" + Pool.getCurrentUser().getUsername() + `/${semID}/${courseName}`).then((response) => {
+                    let arr2  = response.data;
+                    let grade = arr2[0].totalCourseGrade;
+                    setCourseGrade(grade);
+                });
             });
 
-        axios.get("http://localhost:4000/api/getCourseGrade/" + Pool.getCurrentUser().getUsername() + `/${semID}/${courseName}`).then((response) => {
-            let arr2  = response.data;
-            let grade = arr2[0].totalCourseGrade;
-            setCourseGrade(grade);
-        })
     }, []);
 
     return (
